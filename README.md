@@ -1,9 +1,9 @@
 # M<sup>3</sup>Spade
-M<sup>3</sup>Spade (<ins>**M**</ins>ulti-<ins>**M**</ins>odal <ins>**M**</ins>odel for predicting <ins>**Spa**</ins>tial <ins>**D**</ins>rug <ins>**E**</ins>fficacy) is a versatile framework designed for predicting drug sensitivity within spatial transcriptomics data. It is resolution-agnostic, capable of processing data ranging from single-cell to spot-level resolutions.
+M<sup>3</sup>Spade (<ins>**M**</ins>ulti-<ins>**M**</ins>odal <ins>**M**</ins>odel for predicting <ins>**Spa**</ins>tial <ins>**D**</ins>rug <ins>**E**</ins>fficacy) is a versatile framework designed for predicting drug sensitivity within spatial transcriptomics data. It is resolution-agnostic, capable of processing data ranging from single-cell to spot-level resolutions, and supports generalizable prediction of responses to previously unseen drugs based on their chemical structures.
 
 ## Key Features
 
-M3Spade facilitates the following analyses:
+M<sup>3</sup>Spade facilitates the following analyses:
 
 *   **Binarized Sensitivity Prediction**  
     Performs binary classification of drug sensitivity at the individual cell or spot level (Sensitive vs. Resistant).
