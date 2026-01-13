@@ -93,14 +93,14 @@ P.S. We evaluated the model using pseudo-spatial data generated from six gold-st
 To predict the response for a single drug (e.g., Afatinib):
 
 ```bash
-python M3Spade.py --drug_name Afatinib,Oxaliplatin --species hs --device gpu --spatial_count_path ./data/spatial_data/CRC_P6/count.csv --spatial_coord_path ./data/spatial_data/CRC_P6/category_coord.csv
+python M3Spade.py --drug_name Afatinib --species hs --device gpu --spatial_count_path ./data/spatial_data/CRC_P6/count.csv --spatial_coord_path ./data/spatial_data/CRC_P6/category_coord.csv
 ```
 
 #### 2. Combination Therapy Prediction
 To predict the response for a combination of drugs (e.g., Afatinib and Oxaliplatin):
 
 ```bash
-python M3Spade.py --drug_name Afatinib, --species hs --device gpu --spatial_count_path ./data/spatial_data/CRC_P6/count.csv --spatial_coord_path ./data/spatial_data/CRC_P6/category_coord.csv
+python M3Spade.py --drug_name Afatinib,Oxaliplatin --species hs --device gpu --spatial_count_path ./data/spatial_data/CRC_P6/count.csv --spatial_coord_path ./data/spatial_data/CRC_P6/category_coord.csv
 ```
 
 ---
@@ -108,8 +108,8 @@ python M3Spade.py --drug_name Afatinib, --species hs --device gpu --spatial_coun
 ### Important Notes
 
 #### Note 1: Predicting Unseen Drugs
-For any drug, regardless of whether it exists in our internal database, the implementation of M3Spade remains consistent. 
-*   **Interactive Mode:** If a drug is not found in the database, M3Spade will prompt the user to input the IsoSMILES structure of the drug interactively. Once entered, the model automatically performs prediction.
+For any drug, regardless of whether it exists in our internal database, the implementation of M<sup>3</sup>Spade remains consistent. 
+*   **Interactive Mode:** If a drug is not found in the database, M<sup>3</sup>Spade will prompt the user to input the IsoSMILES structure of the drug interactively. Once entered, the model automatically performs prediction.
 *   **Non-Interactive Mode (HPC/SLURM):** For users running on clusters (e.g., SLURM) where interactive input is not feasible, we provide `M3Spade_noninteractive.py`. Users must edit the `MANUAL_DICT` dictionary within this script to manually define the IsoSMILES for unseen drugs before execution.
 
 #### Note 2: IC50 Data Processing
@@ -117,7 +117,7 @@ As large-scale drug screening data expands, new IC50 data may become available. 
 *   The script is available here: [`preprocess/IC50_binarize.R`](preprocess/IC50_binarize.R)
 
 #### Note 3: High-Resolution Data (Superspot)
-For high-resolution spatial transcriptomics data, we recommend aggregating spots into "superspots" before running M3Spade. This reduces data sparsity and file size, thereby improving computational efficiency.
+For high-resolution spatial transcriptomics data, we recommend aggregating spots into "superspots" before running M<sup>3</sup>Spade. This reduces data sparsity and file size, thereby improving computational efficiency.
 *   The tutorial script is available here: [`preprocess/superspot_tutorial.R`](preprocess/superspot_tutorial.R)
 
 ---
@@ -149,11 +149,11 @@ Output Directory
 ## Citation
 (Unpublished now)
 ```bibtex
-@article{M$^{3}Spade,
-    title={M$^{3}$Spade: A Multi-Modal Deep Learning Framework for Predicting Spatially Resolved Drug Responses},
-    author={Zihao Zhang and Xinyu Cui and Zhengke Lian and Xiufeng Pang and Youqiong Ye and Cizhong Jiang},
+@article{M³Spade,
+    title={M³Spade: A Multi-Modal Deep Learning Framework for Predicting Spatially Resolved Drug Responses},
+    author={Zihao Zhang#, Xinyu Cui#, Zhengke Lian#, Xiufeng Pang*, Youqiong Ye*, Cizhong Jiang*},
     journal={XX},
-    year={2025},
+    year={2026},
     doi={xx}
 }
 ```
