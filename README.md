@@ -113,22 +113,22 @@ For any drug, regardless of whether it exists in our internal database, the impl
 *   **Non-Interactive Mode (HPC/SLURM):** For users running on clusters (e.g., SLURM) where interactive input is not feasible, we provide `M3Spade_noninteractive.py`. Users must edit the `MANUAL_DICT` dictionary within this script to manually define the IsoSMILES for unseen drugs before execution.
 
 #### Note 2: IC50 Data Processing
-As large-scale drug screening data expands, new IC50 data may become available. To enhance model scalability, we implemented an IC50 binarization method based on established theoretical research (e.g., *[Insert Citation Here]*).
+As large-scale drug screening data expands, new IC50 data may become available. To enhance model scalability, we implemented an IC50 binarization method based on established theoretical research ( [*Iorio et al., 2016*](https://doi.org/10.1016/j.cell.2016.06.017), [*Knijnenburg et al., 2016*](https://doi.org/10.1038/srep36812) ).
 *   The script is available here: [`preprocess/IC50_binarize.R`](preprocess/IC50_binarize.R)
 
 #### Note 3: High-Resolution Data (Superspot)
-For high-resolution spatial transcriptomics data, we recommend aggregating spots into "superspots" before running M<sup>3</sup>Spade. This reduces data sparsity and file size, thereby improving computational efficiency.
+For high-resolution spatial transcriptomics data, we recommend aggregating spots into "metaspots" using SuperSpot ( [*Telemanet al., 2024*](https://10.1093/bioinformatics/btae734) ) before running M<sup>3</sup>Spade. This reduces data sparsity and file size, thereby improving computational efficiency.
 *   The tutorial script is available here: [`preprocess/superspot_tutorial.R`](preprocess/superspot_tutorial.R)
 
 ---
 
 ## Outputs
 
-M3Spade generates the following files in the output directory.
+M3Spade generates the following files in the results directory.
 
 **For Single Drug Prediction:**
 ```text
-Output Directory
+results
 ├── {drug_name}_best.npy          # Best model prediction results (NumPy array)
 ├── {drug_name}_best.pth          # Saved model weights (PyTorch)
 ├── {drug_name}_output.txt        # Prediction logs and text output
@@ -138,7 +138,7 @@ Output Directory
 **For Combination Therapy Prediction:**
 (Includes all single drug files plus the following combination files in the same directory)
 ```text
-Output Directory
+results
 ├── {drug_name}_best.npy          # ... (Individual drug files generated as above)
 │
 ├── {combine_drugs}_best.npy          # Combined response predictions
