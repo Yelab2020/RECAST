@@ -117,7 +117,7 @@ As large-scale drug screening data expands, new IC50 data may become available. 
 *   The script is available here: [`preprocess/IC50_binarize.R`](preprocess/IC50_binarize.R)
 
 #### Note 3: High-Resolution Data (Superspot)
-For high-resolution spatial transcriptomics data, we recommend aggregating spots into "metaspots" using SuperSpot ( [*Telemanet al., 2024*](https://10.1093/bioinformatics/btae734) ) before running M<sup>3</sup>Spade. This reduces data sparsity and file size, thereby improving computational efficiency.
+For high-resolution spatial transcriptomics data, we recommend aggregating spots into "metaspots" using SuperSpot ( [*Telemanet al., 2024*](https://doi.org/10.1093/bioinformatics/btae734) ) before running M<sup>3</sup>Spade. This reduces data sparsity and file size, thereby improving computational efficiency.
 *   The tutorial script is available here: [`preprocess/superspot_tutorial.R`](preprocess/superspot_tutorial.R)
 
 ---
