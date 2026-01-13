@@ -81,13 +81,15 @@ We provided ten examples 分别为MC38、B16、hCRC各自三张片子以及一�
 
 ### 单药
 Command:
-
-        python M3Spade.py --drug_name Afatinib,Oxaliplatin --species hs --device gpu --spatial_count_path ./data/spatial_data/CRC_P6/count.csv --spatial_coord_path ./data/spatial_data/CRC_P6/category_coord.csv
+```bash
+python M3Spade.py --drug_name Afatinib,Oxaliplatin --species hs --device gpu --spatial_count_path ./data/spatial_data/CRC_P6/count.csv --spatial_coord_path ./data/spatial_data/CRC_P6/category_coord.csv
+```
 
 ### 联合用药
 Command:
-
-        python M3Spade.py --drug_name Afatinib, --species hs --device gpu --spatial_count_path ./data/spatial_data/CRC_P6/count.csv --spatial_coord_path ./data/spatial_data/CRC_P6/category_coord.csv
+```bash
+python M3Spade.py --drug_name Afatinib, --species hs --device gpu --spatial_count_path ./data/spatial_data/CRC_P6/count.csv --spatial_coord_path ./data/spatial_data/CRC_P6/category_coord.csv
+```
 
 注1：对于任意药物，无论是否在数据库中，M3Spade的实现方案和上述示例相同。M3Spade会通过内部调度提示用户输入数据库外药物的IsoSMILES结构，用户交互输入后M3Spade会自动实现对于该药物相应或者联合用药相应的预测。考虑到部分用户可能使用SLURM或其他不方便进行交互的系统进行程序运行。我们实现了M3Spade_noninteractive.py，对于数据库外药物的IsoSMILES结构，用户需要先进入M3Spade_noninteractive.py程序，修改其中的MANUAL_DICT字典进行手动定义，以实现对于unseen药物的预测。
 
@@ -100,5 +102,14 @@ Command:
 对于每个进行预测的药物，M3Spade都会输出{drug_name}_best.npy, {drug_name}_best.pth, {drug_name}_output.txt, {drug_name}_sensitivity.pdf四个文件。对于联合用药的预测，除了各自药物的四个文件，还会额外输出{combine_drugs}_best.npy, {combine_drugs}_output.txt, {combine_drugs}_sensitivity.pdf三个文件。
 
 ## Citation
-
+(Unpublished now)
+```
+@article{M<sup>3</sup>Spade,
+    title={M<sup>3</sup>Spade: A Multi-Modal Deep Learning Framework for Predicting Spatially Resolved Drug Responses},
+    author={Zihao Zhang#, Xinyu Cui1#, Zhengke Lian#, Xiufeng Pang*, Youqiong Ye*, Cizhong Jiang*},
+    journal={XX},
+    year={2025},
+    doi={xx}
+}
+```
 ## Contacts
