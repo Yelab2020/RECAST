@@ -9,7 +9,7 @@ M<sup>3</sup>Spade enables the following tasks:
     Performs binary classification of drug sensitivity at the single-cell or spot level (Sensitive vs. Resistant).
 
 *   **Spatial Autocorrelation Analysis**  
-    Quantifies global spatial dependency and clustering patterns using **Join Count statistics**.
+    Quantifies global spatial dependency and clustering patterns using **Join Count** statistics.
 
 *   **Combinatorial Therapy Assessment**  
     Predicts and evaluates drug sensitivity outcomes for drug combinations.
@@ -85,7 +85,7 @@ Optional:
       --perform_normalize BOOL: Whether to perform filtering and log-normalization on spatial data (True/False) (default: True)
 ```
 
-P.S. We evaluated the model using pseudo-spatial data generated from six gold-standard single-cell datasets. The default parameters provided in this repository were selected based on their robust performance across these tests. These settings are suitable for most tasks and serve as an excellent starting point for personalized parameter tuning.
+P.S. We evaluated the model using pseudo-spatial data generated from six gold-standard single-cell datasets using STEM ( [*Hao et al., 2024*](https://doi.org/10.1038/s42003-023-05640-1) ). The default parameters provided in this repository were selected based on their robust performance across these tests. These settings are suitable for most tasks and serve as an excellent starting point for personalized parameter tuning.
 
 ### Examples
 
@@ -124,7 +124,7 @@ For high-resolution spatial transcriptomics data, we recommend aggregating spots
 
 ## Outputs
 
-M3Spade generates the following files in the results directory.
+M<sup>3</sup>Spade generates the following files in the results directory.
 
 **For Single Drug Prediction:**
 ```text
@@ -135,8 +135,8 @@ results
 └── {drug_name}_sensitivity.pdf   # Visualization of drug sensitivity
 ```
 
-**For Combination Therapy Prediction:**
-(Includes all single drug files plus the following combination files in the same directory)
+**For Combination Therapy Prediction**
+(Includes all single drug files plus the following combination files in the same directory) :
 ```text
 results
 ├── {drug_name}_best.npy          # ... (Individual drug files generated as above)
