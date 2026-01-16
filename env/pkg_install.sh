@@ -11,3 +11,4 @@ pip install -i https://pypi.tuna.tsinghua.edu.cn/simple numpy==1.24.3
 pip install -i https://pypi.tuna.tsinghua.edu.cn/simple scanpy==1.9.8
 pip install -i https://pypi.tuna.tsinghua.edu.cn/simple imbalanced-learn==0.12.4
 pip install -i https://pypi.tuna.tsinghua.edu.cn/simple esda==2.5.1
+conda install pytorch-cluster -c pyg
