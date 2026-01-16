@@ -1,5 +1,5 @@
-#conda create -n M3Spade python==3.8.20
-#conda activate M3Spade
+#conda create -n M3SpaDE python==3.8.20
+#conda activate M3SpaDE
 conda install pytorch==2.2.2 torchvision==0.17.2 torchaudio==2.2.2 pytorch-cuda=11.8 -c pytorch -c nvidia -y
 conda install pyg -c pyg -y
 conda install -c dglteam/label/th22_cu118 dgl -y
