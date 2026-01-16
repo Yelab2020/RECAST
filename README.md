@@ -36,13 +36,38 @@ conda activate M3Spade
 
 ## Data Availability
 
-We provide ten example datasets to demonstrate how to use M<sup>3</sup>Spade for predicting spatial transcriptomic drug responses. These include:
-*   **MC38, B16, hCRC:** Three slides each.
-*   **hCRC Visium HD:** One high-resolution slide.
+To ensure reproducibility and facilitate easy testing of M<sup>3</sup>Spade, we provide comprehensive access to both the training resources and a diverse collection of spatial transcriptomics datasets for demonstration.
 
+### 1. Training Resources
+We provide all necessary data to retrain the model or reproduce our benchmarks, including:
+*   **Bulk RNA-Seq Data:** Pre-processed gene expression profiles from CCLE.
+*   **Response Labels:** Binarized drug sensitivity metrics (IC50) for corresponding cell lines.
+*   **Drug Representations:** Chemical structures formatted as IsoSMILES.
+
+### 2. Example Datasets (Pre-processed)
+To demonstrate how to use M3Spade for predicting spatial drug responses, we have curated **10 example datasets**. These include standard 10x Visium slides and high-resolution Visium HD data:
+
+*   **MC38 Model:** 3 slides (10x Visium)
+*   **B16 Model:** 3 slides (10x Visium)
+*   **Human Colorectal Cancer (hCRC):** 3 slides (10x Visium)
+*   **hCRC High-Definition:** 1 slide (Visium HD)
+
+### Download & Setup
 All example datasets, pre-trained models, and prediction results are available on Zenodo: [**Download Here**](https://zenodo.org/records/18211668)
 
-Please download the datasets and place the `data` directory in the same directory as `M3Spade.py`.
+Please download the datasets and unzip them. Ensure the `data` directory is placed in the same root directory as the `M3Spade.py` script. Your directory structure should look like this:
+
+```bash
+M3Spade-main/
+├── M3Spade.py
+├── data/                  # Place the downloaded folder here
+│   ├── bulk_data/
+│   ├── drug_data/
+│   ├── spatial_data/
+│   └── ...
+└── ...
+└── README.md
+```
 
 ## Usage
 ```bash
