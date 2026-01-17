@@ -110,7 +110,7 @@ Optional:
       --perform_normalize BOOL: Whether to perform filtering and log-normalization on spatial data (True/False) (default: True)
 ```
 
-P.S. We evaluated the model using pseudo-spatial data generated from six gold-standard single-cell datasets using STEM ( [*Hao et al., 2024*](https://doi.org/10.1038/s42003-023-05640-1) ). The default parameters provided in this repository were selected based on their robust performance across these tests. These settings are suitable for most tasks and serve as an excellent starting point for personalized parameter tuning.
+*   We evaluated the model using pseudo-spatial data generated from six gold-standard single-cell datasets using STEM ( [*Hao et al., 2024*](https://doi.org/10.1038/s42003-023-05640-1) ). The default parameters provided in this repository were selected based on their robust performance across these tests. These settings are suitable for most tasks and serve as an excellent starting point for personalized parameter tuning.
 
 ### Examples
 
@@ -141,10 +141,22 @@ For any drug, regardless of whether it exists in our internal database, the impl
 As large-scale drug screening data expands, new IC50 data may become available. To enhance model scalability, we implemented an IC50 binarization method based on established theoretical research ( [*Iorio et al., 2016*](https://doi.org/10.1016/j.cell.2016.06.017), [*Knijnenburg et al., 2016*](https://doi.org/10.1038/srep36812) ).
 *   The script is available here: [`preprocess/IC50_binarize.R`](preprocess/IC50_binarize.R)
 
-#### Note 3: High-Resolution Data (Superspot)
+#### Note 3: High-Resolution Data
 For high-resolution spatial transcriptomics data, we recommend aggregating spots into "metaspots" using SuperSpot ( [*Telemanet al., 2024*](https://doi.org/10.1093/bioinformatics/btae734) ) before running M<sup>3</sup>SpaDE. This reduces data sparsity and file size, thereby improving computational efficiency.
 *   The tutorial script is available here: [`preprocess/superspot_tutorial.R`](preprocess/superspot_tutorial.R)
 
+#### Note 4: Input File Specifications
+M3SpaDE requires two primary input files for spatial transcriptomics data. For concrete examples of the required file structures, please refer to the sample files provided in the `data/` directory.
+
+1.  Spatial Expression Matrix (`--spatial_count_path`)
+    *   Format: Supports CSV (`.csv`) or H5AD (`.h5ad`) files.
+    *   Content: The input can be Raw Counts (recommended) or Pre-normalized Data.
+    *   Normalization: By default, M<sup>3</sup>SpaDE performs internal filtering and log-normalization. If you provide user-customized normalized data, please set `--perform_normalize False` to disable the built-in processing steps.
+
+2.  Spatial Coordinates & Annotations (`--spatial_coord_path`)
+    *   Format: A CSV file.
+    *   Content: This file must contain cell identifiers, spatial coordinates (x, y), and cell type annotations.
+    *   Requirement: Please ensure that the cell IDs in this file match the cell IDs in the expression matrix.
 ---
 
 ## Outputs
