@@ -145,6 +145,8 @@ As large-scale drug screening data expands, new IC50 data may become available. 
 For high-resolution spatial transcriptomics data, we recommend aggregating spots into "metaspots" using SuperSpot ( [*Telemanet al., 2024*](https://doi.org/10.1093/bioinformatics/btae734) ) before running M<sup>3</sup>SpaDE. This reduces data sparsity and file size, thereby improving computational efficiency.
 *   The tutorial script is available here: [`preprocess/superspot_tutorial.R`](preprocess/superspot_tutorial.R)
 
+Alternatively, adjusting the `batch_size` of the VAE algorithm is another way to improve computational speed. While we have not extensively investigated the impact of this parameter on computational stability, it yielded satisfactory results in our test cases.
+
 #### Note 4: Input File Specifications
 M3SpaDE requires two primary input files for spatial transcriptomics data. For concrete examples of the required file structures, please refer to the sample files provided in the `data/` directory.
 
