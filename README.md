@@ -95,6 +95,7 @@ Optional:
       --sampling STRING: Sampling strategy (default: SMOTE)
       
     # Training Hyperparameters
+      --epoch INT: Training epoches (default: 500)
       --lr FLOAT: Learning rate (default: 0.001)
       --weight_decay FLOAT: Weight decay (default: 0.0001)
       --grad_clip FLOAT: Gradient clipping value (default: 1.0)
