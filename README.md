@@ -1,18 +1,18 @@
 # M<sup>3</sup>SpaDE
 [![DOI image](https://zenodo.org/badge/DOI/10.5281/zenodo.18211668.svg)](https://zenodo.org/records/18211668)  
 ## Introduction
-**M<sup>3</sup>SpaDE** (<ins>**M**</ins>ulti-<ins>**M**</ins>odal <ins>**M**</ins>odel for predicting <ins>**Spa**</ins>tial <ins>**D**</ins>rug <ins>**E**</ins>fficacy) is a versatile computational framework designed for predicting drug sensitivity in spatial transcriptomics data. It is resolution-agnostic, capable of processing data ranging from single-cell to spot-level resolutions, and supports generalizable prediction of responses to previously unseen drugs based on their chemical structures.
+**M<sup>3</sup>SpaDE** (<ins>**M**</ins>ulti-<ins>**M**</ins>odal <ins>**M**</ins>odel for predicting <ins>**Spa**</ins>tial <ins>**D**</ins>rug <ins>**E**</ins>fficacy) is a versatile computational framework for predicting drug sensitivity from spatial transcriptomics data. It is resolution-agnostic, accommodating inputs ranging from subcellular to spot-level resolution, and supports generalizable prediction of responses to unseen compounds based on their chemical structures.
 
 M<sup>3</sup>SpaDE enables the following tasks:
 
 *   **Binarized Sensitivity Prediction**  
     Performs binary classification of drug sensitivity at the single-cell or spot level (Sensitive vs. Resistant).
 
-*   **Spatial Autocorrelation Analysis**  
-    Quantifies global spatial dependency and clustering patterns using **Join Count** statistics.
-
 *   **Combinatorial Therapy Assessment**  
     Predicts and evaluates drug sensitivity outcomes for drug combinations.
+
+*   **Spatial Autocorrelation Analysis**  
+    Quantifies global spatial dependency and clustering patterns using **Join Count** statistics.
 
 <img src="img/model.png" width="80%" alt="model architecture">
 
