@@ -93,6 +93,7 @@ Optional:
       --k_neigh INT: Number of neighbors for spatial graph (default: 6)
       --test_size FLOAT: Test split proportion (default: 0.2)
       --sampling STRING: Sampling strategy (default: SMOTE)
+      --savedir STRING: Directory to save training results and outputs (default: results)
       
     # Training Hyperparameters
       --epoch INT: Training epoches (default: 500)
