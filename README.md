@@ -131,6 +131,13 @@ To predict the response for a combination of drugs (e.g., Afatinib and Oxaliplat
 python M3SpaDE.py --drug_name Afatinib,Oxaliplatin --species hs --device gpu --spatial_count_path ./data/spatial_data/CRC_P6/count.csv --spatial_coord_path ./data/spatial_data/CRC_P6/category_coord.csv
 ```
 
+#### 3. Inference
+为了加载训练好的结果：
+
+```bash
+python inference.py --drug_name Afatinib,Oxaliplatin --pth_path ./results/Afatinib_best.pth,./results/Oxaliplatin_best.pth --species hs --spatial_count_path ./data/spatial_data/crc_6/count.csv --spatial_coord_path ./data/spatial_data/crc_6/category_coord.csv --savedir ./results --vae_file_path ./preprocess_results/vae_generated_Afatinib.parquet,./preprocess_results/vae_generated_Oxaliplatin.parquet
+```
+
 ---
 
 ### Important Notes
@@ -145,11 +152,11 @@ As large-scale drug screening data expands, new IC50 data may become available. 
 *   The script is available here: [`preprocess/IC50_binarize.R`](preprocess/IC50_binarize.R)
 
 #### Note 3: High-Resolution Data
-For high-resolution spatial transcriptomics data, we recommend aggregating spots into "metaspots" using SuperSpot ( [*Telemanet al., 2024*](https://doi.org/10.1093/bioinformatics/btae734) ) before running M<sup>3</sup>SpaDE. This reduces data sparsity and file size, thereby improving computational efficiency.
+For high-resolution spatial transcriptomics data, we recommend aggregating spots into "metaspots" using SuperSpot ( [*Telemanet al., 2024*](https://doi.org/10.1093/bioinformatics/btae734) ) before running M<sup>3</sup>SpaDE. This step reduces data sparsity and file size, thereby improving computational efficiency.
 *   The tutorial script is available here: [`preprocess/superspot_tutorial.R`](preprocess/superspot_tutorial.R)
 
 #### Note 4: Input File Specifications
-M3SpaDE requires two primary input files for spatial transcriptomics data. For concrete examples of the required file structures, please refer to the sample files provided in the `data/` directory.
+M<sup>3</sup>SpaDE requires two primary input files for spatial transcriptomics data. For concrete examples of the required file structures, please refer to the sample files provided in the `data/` directory.
 
 1.  Spatial Expression Matrix (`--spatial_count_path`)
     *   Format: Supports CSV (`.csv`) or H5AD (`.h5ad`) files.
@@ -184,6 +191,19 @@ results
 ├── {combine_drugs}_best.npy          # Combined response predictions
 ├── {combine_drugs}_output.txt        # Combined response logs
 └── {combine_drugs}_sensitivity.pdf   # Visualization of combined sensitivity
+```
+
+**Mid Files**
+(If specify `--save_mid True`):
+```text
+preprocess_resluts
+├── bulk_exp_reindex.csv
+├── bulk_label_binary.csv
+├── bulk_train_exp_SMOTE.csv
+├── bulk_train_label_binary_SMOTE.csv
+├── bulk_valid_exp_SMOTE.csv
+├── bulk_valid_label_binary_SMOTE.csv
+└── vae_generated_{drug_name}.parquet    # VAE result
 ```
 
 ## Citation
