@@ -132,7 +132,7 @@ python M3SpaDE.py --drug_name Afatinib,Oxaliplatin --species hs --device gpu --s
 ```
 
 #### 3. Inference
-为了加载训练好的结果：
+To perform inference using pretrained M<sup>3</sup>SpaDE models (e.g., Afatinib and Oxaliplatin):
 
 ```bash
 python inference.py --drug_name Afatinib,Oxaliplatin --pth_path ./results/Afatinib_best.pth,./results/Oxaliplatin_best.pth --species hs --spatial_count_path ./data/spatial_data/crc_6/count.csv --spatial_coord_path ./data/spatial_data/crc_6/category_coord.csv --savedir ./results --vae_file_path ./preprocess_results/vae_generated_Afatinib.parquet,./preprocess_results/vae_generated_Oxaliplatin.parquet
