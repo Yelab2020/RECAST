@@ -45,7 +45,7 @@ We provide all necessary data to retrain the model or reproduce our benchmarks, 
 *   **Drug Representations:** Chemical structures formatted as IsoSMILES.
 
 ### 2. Example Datasets (Pre-processed)
-To demonstrate how to use M3SpaDE for predicting spatial drug responses, we have curated **10 example datasets**. These include standard 10x Visium slides and high-resolution Visium HD data:
+To demonstrate how to use M<sup>3</sup>SpaDE for predicting spatial drug responses, we have curated **10 example datasets**. These include standard 10x Visium slides and high-resolution Visium HD data:
 
 *   **MC38 Model:** 3 slides (10x Visium)
 *   **B16 Model:** 3 slides (10x Visium)
@@ -60,7 +60,7 @@ Please download the datasets and unzip them. Ensure the `data` directory is plac
 ```bash
 M3SpaDE-main/
 ├── M3SpaDE.py
-├── data/                  # Place the downloaded folder here
+├── data/                  # Place the downloaded data folder here
 │   ├── bulk_data/
 │   ├── drug_data/
 │   ├── spatial_data/
@@ -80,20 +80,22 @@ Required:
       --spatial_coord_path STRING: Path to the spatial category coordinate CSV file
 
 Optional:
-    # Hardware and Path
+    # Environment & Output
       --device STRING: Device to use: "gpu" or "cpu" (default: gpu)
+      --savedir STRING: Directory to save training results and outputs (default: results)
+      --save_mid BOOL: Flag to save intermediate calculation results (True/False) (default: False)
     
     # Model Architecture
       --hiddens_graph STRING: Hidden layer dimensions for the graph network (default: 1024,512,128)
       --hiddens_linear STRING: Hidden layer dimensions for the linear network (default: 64,16)
       --drugFunc STRING: GNN function type for the drug graph: "GIN" or "GINE" (default: GIN)
+      --k_neigh INT: Number of neighbors for spatial graph (default: 6)
 
     # Data Processing
       --gene_num INT: Number of highly variable genes to select (default: 500)
-      --k_neigh INT: Number of neighbors for spatial graph (default: 6)
       --test_size FLOAT: Test split proportion (default: 0.2)
       --sampling STRING: Sampling strategy (default: SMOTE)
-      --savedir STRING: Directory to save training results and outputs (default: results)
+      --perform_normalize BOOL: Whether to perform filtering and log-normalization on spatial data (True/False) (default: True)
       
     # Training Hyperparameters
       --epoch INT: Training epoches (default: 500)
@@ -103,13 +105,12 @@ Optional:
       --patience INT: Early stopping patience (default: 25)
       --warm_up INT: Warm-up epochs (default: 10)
       --dropout_rate FLOAT: Graph dropout rate (default: 0.3)
+
+    # Loss Function (Tsallis Entropy)
       --alpha FLOAT: TsallisEntropy parameter 1 (default: 1.8)
       --temperature FLOAT: TsallisEntropy parameter 2 (default: 2.5)
       --threshold FLOAT: Threshold parameter (default: 0.95)
 
-    # Flags
-      --save_mid BOOL: Flag to save intermediate calculation results (True/False) (default: False)
-      --perform_normalize BOOL: Whether to perform filtering and log-normalization on spatial data (True/False) (default: True)
 ```
 
 *   We evaluated the model using pseudo-spatial data generated from six gold-standard single-cell datasets using STEM ( [*Hao et al., 2024*](https://doi.org/10.1038/s42003-023-05640-1) ). The default parameters provided in this repository were selected based on their robust performance across these tests. These settings are suitable for most tasks and serve as an excellent starting point for personalized parameter tuning.
