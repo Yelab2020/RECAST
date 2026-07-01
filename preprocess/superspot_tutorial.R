@@ -108,7 +108,7 @@ hddata_DLS <- SCimplify_SpatialDLS(
   n.pc = n_pc_use,
   method_knn = "1",
   k.knn = k_knn,
-  method_normalization = "no",
+  method_normalization = "log_normalize",
   cell.annotation = normcounts_meta$DefineTypes
 )
 
