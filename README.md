@@ -1,5 +1,5 @@
 # M<sup>3</sup>SpaDE
-[![DOI image](https://zenodo.org/badge/DOI/10.5281/zenodo.18211668.svg)](https://zenodo.org/records/18211668)  
+[![DOI image](https://zenodo.org/badge/DOI/10.5281/zenodo.20047942.svg)](https://zenodo.org/records/20047942)  
 ## Introduction
 **M<sup>3</sup>SpaDE** (<ins>**M**</ins>ulti-<ins>**M**</ins>odal <ins>**M**</ins>odel for predicting <ins>**Spa**</ins>tial <ins>**D**</ins>rug <ins>**E**</ins>fficacy) is a versatile computational framework for predicting drug sensitivity from spatial transcriptomics data. It is resolution-agnostic, accommodating inputs ranging from subcellular to spot-level resolution, and supports generalizable prediction of responses to unseen compounds based on their chemical structures.
 
@@ -53,7 +53,7 @@ To demonstrate how to use M<sup>3</sup>SpaDE for predicting spatial drug respons
 *   **hCRC High-Definition:** 1 slide (Visium HD)
 
 ### Download & Setup
-All example datasets, pre-trained models, and prediction results are available on Zenodo: [**Download Here**](https://zenodo.org/records/18211668)
+All training datasets and example datasets are available on Zenodo: [**Download Here**](https://zenodo.org/records/20047942)
 
 Please download the datasets and unzip them. Ensure the `data` directory is placed in the same root directory as the `M3SpaDE.py` script. Your directory structure should look like this:
 
