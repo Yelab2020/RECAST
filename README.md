@@ -52,7 +52,7 @@ To demonstrate how to use M<sup>3</sup>SpaDE for predicting spatial drug respons
 *   **Human Colorectal Cancer (hCRC):** 3 slides (10x Visium)
 *   **hCRC High-Definition:** 1 slide (Visium HD)
 
-### Download & Setup
+### 3. Download & Setup
 All training datasets and example datasets are available on Zenodo: [**Download Here**](https://zenodo.org/records/20047942)
 
 Please download the datasets and unzip them. Ensure the `data` directory is placed in the same root directory as the `M3SpaDE.py` script. Your directory structure should look like this:
@@ -114,6 +114,30 @@ Optional:
 ```
 
 *   We evaluated the model using pseudo-spatial data generated from six gold-standard single-cell datasets using STEM ( [*Hao et al., 2024*](https://doi.org/10.1038/s42003-023-05640-1) ). The default parameters provided in this repository were selected based on their robust performance across these tests. These settings are suitable for most tasks and serve as an excellent starting point for personalized parameter tuning.
+
+```bash
+Usage: inference.py [options]
+
+Required:
+      --drug_name STRING: Name of the drug(s). For multiple drugs, separate with commas (e.g., "Gefitinib,Docetaxel")
+      --pth_path STRING: Path(s) to the trained M3SpaDE model (.pth) used for inference. For multiple models, separate with commas.
+      --species STRING: Species of the spatial data: "hs" (Human) or "mus" (Mouse)
+      --spatial_count_path STRING: Path to the spatial count CSV file or H5 file
+      --spatial_coord_path STRING: Path to the spatial category coordinate CSV file
+
+Optional:
+    # Model & Inference
+      --newdrug_pth_path STRING: Path(s) to the pretrained model(s) for unseen drug inference. For multiple models, separate with commas.
+      --vae_file_path STRING: Path(s) to the pretrained VAE model(s). For multiple models, separate with commas.
+
+    # Data Processing
+      --perform_normalize BOOL: Whether to perform filtering and log-normalization on spatial data (True/False) (default: True)
+
+    # Output
+      --savedir STRING: Directory to save prediction results and outputs (default: results)
+      --save_mid BOOL: Flag to save intermediate calculation results (True/False) (default: False)
+
+```
 
 ### Examples
 
