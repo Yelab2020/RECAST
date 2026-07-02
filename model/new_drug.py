@@ -18,7 +18,7 @@ def normalize_name(name):
     normalized = re.sub(r'[-_()\s/]+', '', normalized)
     return normalized
 
-def run_training(drug_dict, device, test_drug, current_logs, output_lines):
+def run_training(drug_dict, device, test_drug, current_logs, output_lines, savedir):
     """
     Encapsulated training function
     Args:
@@ -124,7 +124,7 @@ def run_training(drug_dict, device, test_drug, current_logs, output_lines):
     
     # Model filename contains parameter information
     
-    stopper = model.newdrug_model.EarlyStopping(mode='higher', patience=30, filename=test_drug+'_newdrug.pth')
+    stopper = model.newdrug_model.EarlyStopping(mode='higher', patience=30, filename=os.path.join(savedir, f"{test_drug}_newdrug.pth"))
     scheduler = lr_scheduler.ReduceLROnPlateau(
         opt, mode='max', factor=0.8, patience=20, verbose=False, 
         threshold=0.001, threshold_mode='rel', cooldown=0, min_lr=0, eps=1e-09
@@ -147,7 +147,8 @@ def run_training(drug_dict, device, test_drug, current_logs, output_lines):
         if early_stop:
             break
 
-    stopper.load_checkpoint(ndrug)
+    ndrug = stopper.load_checkpoint()
+    ndrug = ndrug.to(device)
     
     # Final validation
     train_acc, train_f1, train_auc, train_ap, train_mean_ce, \

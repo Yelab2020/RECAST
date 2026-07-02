@@ -288,7 +288,8 @@ def train_epoch(bulkgraph, stgtaph, twingraph, drug_graph,
                 weight_decay=0.001, grad_clip=0.5,warm_up=10,
                 dropout_rate=0.5, use_layer_norm=True, bulk_drop = 0,
                 temperature = 4, alpha = 1.8, threshold = 0.8,
-                save_path='./', drug_name = None):
+                save_path='./', drug_name = None, kneigh=6, gene_num=500,
+                test_size=0.2, sampling='SMOTE'):
 
     """
     dropout_rate: Network dropout
@@ -362,8 +363,51 @@ def train_epoch(bulkgraph, stgtaph, twingraph, drug_graph,
                 b_e_bb = e_bb
                 b_sig_bb = sig_bb
 
-                b_state = {'model':copy.deepcopy(model.state_dict()),
-                           'epoch': epoch}
+                b_state = {
+                    'model': copy.deepcopy(model).cpu(),
+                    'epoch': epoch,
+                
+                    'model_args': {
+                        'num_classes': num_classes,
+                        'in_dim': in_dim,
+                        'hiddens_graph': hiddens_graph,
+                        'hiddens_linear': hiddens_linear,
+                        'layer_drug': layer_drug,
+                        'graphFunc': graphFunc,
+                        'drugFunc': drugFunc,
+                        'dropout_rate': dropout_rate,
+                        'use_layer_norm': use_layer_norm,
+                        'bulk_drop': bulk_drop
+                    },
+                
+                    'train_args': {
+                        'lr': lr,
+                        'weight_decay': weight_decay,
+                        'grad_clip': grad_clip,
+                        'warm_up': warm_up,
+                        'alpha': alpha,
+                        'temperature': temperature,
+                        'threshold': threshold,
+                        'sampling': sampling,
+                        'gene_num': gene_num,
+                        'k_neigh': kneigh,
+                        'gene_num': gene_num,
+                        'patience': patience
+                    },
+                
+                    'results': {
+                        'best_loss': best_loss,
+                        'b_valid_auc': b_valid_auc,
+                        'b_valid_ap': b_valid_ap,
+                        'b_valid_acc': b_valid_acc,
+                        'b_valid_f1': b_valid_f1,
+                        'b_sen_prop': b_sen_prop,
+                        'b_bb': b_bb,
+                        'b_e_bb': b_e_bb,
+                        'b_sig_bb': b_sig_bb,
+                        'best_epoch': best_epoch
+                    }
+                }
 
                 b_choose = choose.copy()
 

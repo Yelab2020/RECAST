@@ -3,7 +3,8 @@
 
 import os
 import random
- 
+import copy
+
 import torch
 import torch.nn as nn
 import numpy as np
@@ -13,7 +14,7 @@ import datetime
 import torch_geometric
 from torch_geometric.nn import GINConv, GINEConv, JumpingKnowledge, global_max_pool, global_mean_pool, GATConv, GATv2Conv, max_pool
 from torch_geometric.data import Data, Batch
-from torch_geometric.nn import graclus, max_pool  
+from torch_geometric.nn import graclus, max_pool
 import torch.nn.functional as F
 
 from sklearn.metrics import accuracy_score, f1_score, roc_auc_score, average_precision_score
@@ -286,16 +287,19 @@ class EarlyStopping():
         model : nn.Module
             Model instance.
         '''
-        torch.save({'model_state_dict': model.state_dict()}, os.path.join('results', self.filename))
+        save_dir = 'results'
+        os.makedirs(save_dir, exist_ok=True)
+        torch.save({'model': copy.deepcopy(model).cpu()}, self.filename)
 
-    def load_checkpoint(self, model):
+    def load_checkpoint(self):
         '''Load the latest checkpoint
         Parameters
         ----------
         model : nn.Module
             Model instance.
         '''
-        model.load_state_dict(torch.load(os.path.join('results', self.filename))['model_state_dict'])
+        model = torch.load(self.filename)['model']
+        return model
 
 # 6. Validation
 def validate(model, train_loader, val_loader, test_loader, device):
