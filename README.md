@@ -14,7 +14,7 @@ M<sup>3</sup>SpaDE enables the following tasks:
 *   **Spatial Autocorrelation Analysis**  
     Quantifies global spatial dependency and clustering patterns using **Join Count** statistics.
 
-<img src="img/model.png" width="100%" alt="model architecture">
+<img src="img/model.png" width="95%" alt="model architecture">
 
 ## Requirements
 
