@@ -24,11 +24,11 @@ Our experiments were conducted using Python 3.8.20 with CUDA 11.8. We recommend 
 
 **1. Create a virtual environment:**
 ```bash
-conda create -n M3SpaDE python==3.8.20
+conda create -n RECAST python==3.8.20
 ```
 **2. Activate the environment:**
 ```bash
-conda activate M3SpaDE
+conda activate RECAST
 ```
 **3. Install required packages:**
 
@@ -55,11 +55,11 @@ To demonstrate how to use RECAST for predicting spatial drug responses, we have 
 ### 3. Download & Setup
 All training datasets and example datasets are available on Zenodo: [**Download Here**](https://zenodo.org/records/20047942)
 
-Please download the datasets and unzip them. Ensure the `data` directory is placed in the same root directory as the `M3SpaDE.py` script. Your directory structure should look like this:
+Please download the datasets and unzip them. Ensure the `data` directory is placed in the same root directory as the `RECAST.py` script. Your directory structure should look like this:
 
 ```bash
-M3SpaDE-main/
-├── M3SpaDE.py
+RECAST-main/
+├── RECAST.py
 ├── data/                  # Place the downloaded data folder here
 │   ├── bulk_data/
 │   ├── drug_data/
@@ -71,7 +71,7 @@ M3SpaDE-main/
 
 ## Usage
 ```bash
-Usage: M3SpaDE.py [options]
+Usage: RECAST.py [options]
 
 Required:
       --drug_name STRING: Name of the drug(s). For multiple drugs, separate with commas (e.g., "Gefitinib,Docetaxel")
@@ -120,7 +120,7 @@ Usage: inference.py [options]
 
 Required:
       --drug_name STRING: Name of the drug(s). For multiple drugs, separate with commas (e.g., "Gefitinib,Docetaxel")
-      --pth_path STRING: Path(s) to the trained M3SpaDE model (.pth) used for inference. For multiple models, separate with commas.
+      --pth_path STRING: Path(s) to the trained RECAST model (.pth) used for inference. For multiple models, separate with commas.
       --species STRING: Species of the spatial data: "hs" (Human) or "mus" (Mouse)
       --spatial_count_path STRING: Path to the spatial count CSV file or H5 file
       --spatial_coord_path STRING: Path to the spatial category coordinate CSV file
@@ -145,14 +145,14 @@ Optional:
 To predict the response for a single drug (e.g., Afatinib):
 
 ```bash
-python M3SpaDE.py --drug_name Afatinib --species hs --device gpu --spatial_count_path ./data/spatial_data/CRC_P6/count.csv --spatial_coord_path ./data/spatial_data/CRC_P6/category_coord.csv
+python RECAST.py --drug_name Afatinib --species hs --device gpu --spatial_count_path ./data/spatial_data/CRC_P6/count.csv --spatial_coord_path ./data/spatial_data/CRC_P6/category_coord.csv
 ```
 
 #### 2. Combination Therapy Prediction
 To predict the response for a combination of drugs (e.g., Afatinib and Oxaliplatin):
 
 ```bash
-python M3SpaDE.py --drug_name Afatinib,Oxaliplatin --species hs --device gpu --spatial_count_path ./data/spatial_data/CRC_P6/count.csv --spatial_coord_path ./data/spatial_data/CRC_P6/category_coord.csv
+python RECAST.py --drug_name Afatinib,Oxaliplatin --species hs --device gpu --spatial_count_path ./data/spatial_data/CRC_P6/count.csv --spatial_coord_path ./data/spatial_data/CRC_P6/category_coord.csv
 ```
 
 #### 3. Inference
@@ -169,7 +169,7 @@ python inference.py --drug_name Afatinib,Oxaliplatin --pth_path ./results/Afatin
 #### Note 1: Predicting Unseen Drugs
 For any drug, regardless of whether it exists in our internal database, the implementation of RECAST remains consistent. 
 *   **Interactive Mode:** If a drug is not found in the database, RECAST will prompt the user to input the IsoSMILES structure of the drug interactively. Once entered, the model automatically performs prediction.
-*   **Non-Interactive Mode (HPC/SLURM):** For users running on clusters (e.g., SLURM) where interactive input is not feasible, we provide `M3SpaDE_noninteractive.py`. Users must edit the `MANUAL_DICT` dictionary within this script to manually define the IsoSMILES for unseen drugs before execution.
+*   **Non-Interactive Mode (HPC/SLURM):** For users running on clusters (e.g., SLURM) where interactive input is not feasible, we provide `RECAST_noninteractive.py`. Users must edit the `MANUAL_DICT` dictionary within this script to manually define the IsoSMILES for unseen drugs before execution.
 
 #### Note 2: IC50 Data Processing
 As large-scale drug screening data expands, new IC50 data may become available. To enhance model scalability, we implemented an IC50 binarization method based on established theoretical research ( [*Iorio et al., 2016*](https://doi.org/10.1016/j.cell.2016.06.017), [*Knijnenburg et al., 2016*](https://doi.org/10.1038/srep36812) ).
