@@ -236,7 +236,7 @@ preprocess_resluts
 @article{RECAST,
     title={Spatial pharmacogenomic prediction through knowledge transfer with RECAST},
     author={Zihao Zhang#, Xinyu Cui#, Zhengke Lian#, Xiufeng Pang*, Youqiong Ye*, Cizhong Jiang*},
-    journal={XX},
+    journal={xx},
     year={2026},
     doi={xx}
 }
