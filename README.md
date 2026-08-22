@@ -1,9 +1,9 @@
-# M<sup>3</sup>SpaDE
+# **RECAST**
 [![DOI image](https://zenodo.org/badge/DOI/10.5281/zenodo.20047942.svg)](https://zenodo.org/records/20047942)  
 ## Introduction
-**M<sup>3</sup>SpaDE** (<ins>**M**</ins>ulti-<ins>**M**</ins>odal <ins>**M**</ins>odel for predicting <ins>**Spa**</ins>tial <ins>**D**</ins>rug <ins>**E**</ins>fficacy) is a versatile computational framework for predicting drug sensitivity from spatial transcriptomics data. It is resolution-agnostic, accommodating inputs ranging from subcellular to spot-level resolution, and supports generalizable prediction of responses to unseen compounds based on their chemical structures.
+**RECAST** (<ins>**R**</ins>esponse <ins>**E**</ins>stimation through <ins>**C**</ins>ross-domain <ins>**A**</ins>daptation of <ins>**S**</ins>patial <ins>**T**</ins>ranscriptomes) is a versatile computational framework for predicting drug sensitivity from spatial transcriptomics data. It is resolution-agnostic, accommodating inputs ranging from subcellular to spot-level resolution, and supports generalizable prediction of responses to unseen compounds based on their chemical structures.
 
-M<sup>3</sup>SpaDE enables the following tasks:
+RECAST enables the following tasks:
 
 *   **Binarized Sensitivity Prediction**  
     Performs binary classification of drug sensitivity at the single-cell or spot level (Sensitive vs. Resistant).
@@ -18,9 +18,9 @@ M<sup>3</sup>SpaDE enables the following tasks:
 
 ## Requirements
 
-> **Note:** We strongly recommend running M<sup>3</sup>SpaDE on a GPU for optimal performance.
+> **Note:** We strongly recommend running RECAST on a GPU for optimal performance.
 
-Our experiments were conducted using Python 3.8.20 with CUDA 11.8. We recommend using Anaconda or Miniconda to create an isolated conda environment for running M<sup>3</sup>SpaDE.
+Our experiments were conducted using Python 3.8.20 with CUDA 11.8. We recommend using Anaconda or Miniconda to create an isolated conda environment for running RECAST.
 
 **1. Create a virtual environment:**
 ```bash
@@ -36,7 +36,7 @@ conda activate M3SpaDE
 
 ## Data Availability
 
-To ensure reproducibility and facilitate easy testing of M<sup>3</sup>SpaDE, we provide comprehensive access to both the training resources and a diverse collection of spatial transcriptomics datasets for demonstration.
+To ensure reproducibility and facilitate easy testing of RECAST, we provide comprehensive access to both the training resources and a diverse collection of spatial transcriptomics datasets for demonstration.
 
 ### 1. Training Resources
 We provide all necessary data to retrain the model or reproduce our benchmarks, including:
@@ -45,7 +45,7 @@ We provide all necessary data to retrain the model or reproduce our benchmarks, 
 *   **Drug Representations:** Chemical structures formatted as IsoSMILES.
 
 ### 2. Example Datasets (Pre-processed)
-To demonstrate how to use M<sup>3</sup>SpaDE for predicting spatial drug responses, we have curated **10 example datasets**. These include standard 10x Visium slides and high-resolution Visium HD data:
+To demonstrate how to use RECAST for predicting spatial drug responses, we have curated **10 example datasets**. These include standard 10x Visium slides and high-resolution Visium HD data:
 
 *   **MC38 Model:** 3 slides (10x Visium)
 *   **B16 Model:** 3 slides (10x Visium)
@@ -156,7 +156,7 @@ python M3SpaDE.py --drug_name Afatinib,Oxaliplatin --species hs --device gpu --s
 ```
 
 #### 3. Inference
-To perform inference using pretrained M<sup>3</sup>SpaDE models (e.g., Afatinib and Oxaliplatin):
+To perform inference using pretrained RECAST models (e.g., Afatinib and Oxaliplatin):
 
 ```bash
 python inference.py --drug_name Afatinib,Oxaliplatin --pth_path ./results/Afatinib_best.pth,./results/Oxaliplatin_best.pth --species hs --spatial_count_path ./data/spatial_data/crc_6/count.csv --spatial_coord_path ./data/spatial_data/crc_6/category_coord.csv --savedir ./results --vae_file_path ./preprocess_results/vae_generated_Afatinib.parquet,./preprocess_results/vae_generated_Oxaliplatin.parquet
@@ -167,8 +167,8 @@ python inference.py --drug_name Afatinib,Oxaliplatin --pth_path ./results/Afatin
 ### Important Notes
 
 #### Note 1: Predicting Unseen Drugs
-For any drug, regardless of whether it exists in our internal database, the implementation of M<sup>3</sup>SpaDE remains consistent. 
-*   **Interactive Mode:** If a drug is not found in the database, M<sup>3</sup>SpaDE will prompt the user to input the IsoSMILES structure of the drug interactively. Once entered, the model automatically performs prediction.
+For any drug, regardless of whether it exists in our internal database, the implementation of RECAST remains consistent. 
+*   **Interactive Mode:** If a drug is not found in the database, RECAST will prompt the user to input the IsoSMILES structure of the drug interactively. Once entered, the model automatically performs prediction.
 *   **Non-Interactive Mode (HPC/SLURM):** For users running on clusters (e.g., SLURM) where interactive input is not feasible, we provide `M3SpaDE_noninteractive.py`. Users must edit the `MANUAL_DICT` dictionary within this script to manually define the IsoSMILES for unseen drugs before execution.
 
 #### Note 2: IC50 Data Processing
@@ -176,16 +176,16 @@ As large-scale drug screening data expands, new IC50 data may become available. 
 *   The script is available here: [`preprocess/IC50_binarize.R`](preprocess/IC50_binarize.R)
 
 #### Note 3: High-Resolution Data
-For high-resolution spatial transcriptomics data, we recommend aggregating spots into "metaspots" using SuperSpot ( [*Telemanet al., 2024*](https://doi.org/10.1093/bioinformatics/btae734) ) before running M<sup>3</sup>SpaDE. This step reduces data sparsity and file size, thereby improving computational efficiency.
+For high-resolution spatial transcriptomics data, we recommend aggregating spots into "metaspots" using SuperSpot ( [*Telemanet al., 2024*](https://doi.org/10.1093/bioinformatics/btae734) ) before running RECAST. This step reduces data sparsity and file size, thereby improving computational efficiency.
 *   The tutorial script is available here: [`preprocess/superspot_tutorial.R`](preprocess/superspot_tutorial.R)
 
 #### Note 4: Input File Specifications
-M<sup>3</sup>SpaDE requires two primary input files for spatial transcriptomics data. For concrete examples of the required file structures, please refer to the sample files provided in the `data/` directory.
+RECAST requires two primary input files for spatial transcriptomics data. For concrete examples of the required file structures, please refer to the sample files provided in the `data/` directory.
 
 1.  Spatial Expression Matrix (`--spatial_count_path`)
     *   Format: Supports CSV (`.csv`) or H5AD (`.h5ad`) files.
     *   Content: The input can be Raw Counts (recommended) or Pre-normalized Data.
-    *   Normalization: By default, M<sup>3</sup>SpaDE performs internal filtering and log-normalization. If you provide user-customized normalized data, please set `--perform_normalize False` to disable the built-in processing steps.
+    *   Normalization: By default, RECAST performs internal filtering and log-normalization. If you provide user-customized normalized data, please set `--perform_normalize False` to disable the built-in processing steps.
 
 2.  Spatial Coordinates & Annotations (`--spatial_coord_path`)
     *   Format: A CSV file.
@@ -195,7 +195,7 @@ M<sup>3</sup>SpaDE requires two primary input files for spatial transcriptomics 
 
 ## Outputs
 
-M<sup>3</sup>SpaDE generates the following files in the results directory.
+RECAST generates the following files in the results directory.
 
 **For Single Drug Prediction:**
 ```text
@@ -233,8 +233,8 @@ preprocess_resluts
 ## Citation
 (Unpublished now)
 ```bibtex
-@article{M³SpaDE,
-    title={M³SpaDE: A Multi-Modal Deep Learning Framework for Predicting Spatially Resolved Drug Responses},
+@article{RECAST,
+    title={Spatial pharmacogenomic prediction through knowledge transfer with RECAST},
     author={Zihao Zhang#, Xinyu Cui#, Zhengke Lian#, Xiufeng Pang*, Youqiong Ye*, Cizhong Jiang*},
     journal={XX},
     year={2026},
