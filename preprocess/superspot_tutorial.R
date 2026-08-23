@@ -34,7 +34,7 @@
 # 3. MC_DefineTypes.rds : Dominant cell type annotation for each SuperSpot.
 # 4. MC_membership.rds  : Mapping relationship between original cells and SuperSpots.
 #
-# *** [CRITICAL INPUTS FOR M3Spade] ***
+# *** [CRITICAL INPUTS FOR RECAST] ***
 # 5. category_coord.csv : CSV file containing spatial coordinates (x,y) and labels.
 # 6. spatial_data.h5ad  : The final Anndata object (converted from Seurat) 
 #                         containing normalized expression data.
@@ -241,7 +241,7 @@ MC_membership <- readRDS(file.path(save_dir, "MC_membership.rds"))
 # Step 6: Create Training Data (H5AD format)
 # ==============================================================================
 
-# Set output directory for M3Spade inputs
+# Set output directory for RECAST inputs
 out_dir <- file.path(save_dir, "traindata")
 if(!dir.exists(out_dir)) dir.create(out_dir, recursive = TRUE)
 
@@ -253,7 +253,7 @@ colnames(category_coord) <- c("name", "x", "y", "cell_type")
 category_coord$cell_type <- ifelse(category_coord$cell_type == "TumorCells", "Cancer", "Other")
 category_coord$name <- paste0("Cell_", category_coord$name) # Using your setting
 
-# --- Save Coordinates for M3Spade (Critical Input for M3Spade) ---
+# --- Save Coordinates for RECAST (Critical Input for RECAST) ---
 # Note: Saving to 'out_dir' to keep paired with the h5ad file
 write.csv(category_coord, 
           file = file.path(out_dir, "category_coord.csv"), 
@@ -317,4 +317,4 @@ SaveH5Seurat(hd_data, filename = h5seurat_file, overwrite = TRUE)
 # Convert h5Seurat to h5ad format
 Convert(h5seurat_file, dest = "h5ad", overwrite = TRUE)
 
-print(paste("All steps completed. M3Spade inputs saved to:", out_dir))
+print(paste("All steps completed. RECAST inputs saved to:", out_dir))
